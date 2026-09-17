@@ -20,7 +20,13 @@ export type ProductTrackingTypes =
     | 'server:resource_capped:script_activate'
     | 'server:resource_capped:script_deploy_is_disabled'
     | 'server:resource_capped:action_triggered'
-    | 'server:resource_capped:active_records';
+    | 'server:resource_capped:active_records'
+    | 'agents:session_create'
+    | 'agents:session_end'
+    | 'agents:tool_run_succeed'
+    | 'agents:tool_run_fail'
+    | 'agents:proxy_request_succeed'
+    | 'agents:proxy_request_fail';
 
 /**
  * Only ids: no email, no names, and no account name either, which defaults to "<person>'s Team" for
