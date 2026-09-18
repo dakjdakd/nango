@@ -24,7 +24,8 @@ export type ProductTrackingTypes =
     | 'agents:session_start'
     | 'agents:session_end'
     | 'agents:tool_call_complete'
-    | 'agents:proxy_request_complete';
+    | 'agents:proxy_request_complete'
+    | 'agents:tool_search_complete';
 
 /**
  * Only ids: no email, no names, and no account name either, which defaults to "<person>'s Team" for
@@ -136,10 +137,16 @@ class ProductTracking {
         team,
         environment,
         user,
-        eventProperties
+        eventProperties,
+        structuredProperties
     }: {
         name: ProductTrackingTypes;
         eventProperties?: Record<string, string | number | boolean | null | undefined>;
+        /**
+         * Values the taxonomy's primitives-only rule does not allow, carried by the exception granted
+         * to tool search so a query can be read next to the results it returned.
+         */
+        structuredProperties?: Record<string, unknown>;
     } & TrackingContextInput) {
         try {
             if (this.client == null) {
@@ -154,6 +161,7 @@ class ProductTracking {
 
             const properties = {
                 ...eventProperties,
+                ...structuredProperties,
                 ...commonProperties('server'),
                 ...contextProperties(context)
             };
