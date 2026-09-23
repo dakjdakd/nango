@@ -21,7 +21,7 @@ export type ProductTrackingTypes =
     | 'server:resource_capped:script_deploy_is_disabled'
     | 'server:resource_capped:action_triggered'
     | 'server:resource_capped:active_records'
-    | 'agents:session_create'
+    | 'agents:session_start'
     | 'agents:session_end'
     | 'agents:tool_call_complete'
     | 'agents:proxy_request_complete';
