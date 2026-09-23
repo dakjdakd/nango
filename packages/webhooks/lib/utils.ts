@@ -79,7 +79,8 @@ export const NON_FORWARDABLE_HEADERS = [
     'sec-',
     'proxy-',
     'www-authenticate',
-    'server'
+    'server',
+    'x-nango-webhook-secret'
 ];
 
 const circuitBreaker = await (async () => {
