@@ -65,6 +65,11 @@ describe('createManagementMcpServer with OAuth', () => {
             const result = await client.listTools();
 
             expect(result.tools.map((tool) => tool.name)).toStrictEqual(['environments_list', ...managementToolNames]);
+            for (const tool of result.tools) {
+                expect(tool._meta).toStrictEqual({
+                    securitySchemes: [{ type: 'oauth2', scopes: ['environment:*'] }]
+                });
+            }
             expect(result.tools[0]).toMatchObject({
                 name: 'environments_list',
                 description:
